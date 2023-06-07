@@ -285,9 +285,11 @@ class FirstOrderPredictor(BasePredictor):
                     driving_slices.append(current_slice)
             else:
                 # whole driving as a single slice
-                driving = paddle.to_tensor(
-                    np.array(driving_video).astype(np.float32)).transpose(
-                        [0, 3, 1, 2])
+                driving = paddle.to_tensor(np.array(driving_video, dtype=np.float32).transpose([0, 3, 1, 2]))
+                # failed
+                # driving = paddle.to_tensor(
+                #     np.array(driving_video).astype(np.float32)).transpose(
+                #         [0, 3, 1, 2])
                 frame_count_in_slice = driving_n
                 driving_slices.append(driving)
 
